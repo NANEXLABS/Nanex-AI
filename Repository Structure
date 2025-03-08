@@ -1,0 +1,99 @@
+yoo-agent/
+├── .github/
+│   └── workflows/
+│       ├── ci.yml              # Unit tests + security scans
+│       └── cd.yml              # Docker/K8s deployment
+│
+├── src/
+│   ├── agent_core/
+│   │   ├── agent.py           # Base agent class
+│   │   └── lifecycle/
+│   │       ├── heartbeat.py   # Agent health monitoring
+│   │       └── state_machine.py # Agent state transitions
+│   │
+│   ├── security/
+│   │   ├── authentication/
+│   │   │   ├── jwt_rotation.py # JWT token rotation
+│   │   │   ├── mutual_tls.py   # mTLS handshake
+│   │   │   └── spiffe/        # SPIFFE integration
+│   │   ├── encryption/
+│   │   │   ├── homomorphic.py # Homomorphic encryption
+│   │   │   └── aes_gcm.py     # AES-GCM encryption
+│   │   └── microsegmentation/
+│   │       ├── policy_engine.py # OPA policy engine
+│   │       └── firewall.py    # Dynamic rule generator
+│   │
+│   ├── data/
+│   │   ├── federated_learning/
+│   │   │   ├── coordinator.py # FL task orchestration
+│   │   │   ├── aggregation.py # Gradient aggregation
+│   │   │   └── differential_privacy.py # DP noise
+│   │   ├── model_management/
+│   │   │   ├── versioning.py  # Model version control
+│   │   │   └── registry.py    # Model registry
+│   │   └── optimizers/
+│   │       ├── tflite_converter.py # TF Lite conversion
+│   │       └── onnx_quantize.py # ONNX quantization
+│   │
+│   ├── edge/
+│   │   ├── runtime/
+│   │   │   ├── memory.py      # Memory pool (<8MB)
+│   │   │   └── inference.py   # Edge-optimized inference
+│   │   └── deployment/
+│   │       ├── aws_greengrass/ # AWS Greengrass configs
+│   │       └── k3s/          # Lightweight K8s setup
+│   │
+│   ├── multi_agent/
+│   │   ├── communication/
+│   │   │   ├── grpc_web.py    # gRPC-Web adapter
+│   │   │   └── mqtt.py        # MQTT event bus
+│   │   ├── orchestration/
+│   │   │   ├── kubernetes.py  # K8s autoscaling
+│   │   │   └── self_healing.py # Agent recovery
+│   │   └── task_scheduler/
+│   │       ├── priority_queue.py # Priority-based tasks
+│   │       └── resource_balancer.py # Resource allocator
+│   │
+│   └── utils/
+│       ├── logging.py         # Structured logging
+│       └── metrics.py         # Prometheus metrics
+│
+├── config/
+│   ├── security/
+│   │   ├── gdpr_policies.yaml # GDPR compliance
+│   │   └── hipaa_checks.yaml  # HIPAA audits
+│   ├── edge_deployment/
+│   │   ├── docker-compose.yml # Docker setup
+│   │   └── helm_chart/        # Helm charts
+│   └── agents/
+│       ├── agent_config.yaml  # Global settings
+│       └── profiles/
+│           ├── production.yaml
+│           └── development.yaml
+│
+├── tests/
+│   ├── unit/
+│   │   ├── security/
+│   │   └── data/
+│   ├── integration/
+│   │   ├── edge/
+│   │   └── multi_agent/
+│   └── performance/
+│       ├── load_testing.py    # Locust scripts
+│       └── memory_profiler/   # Memory analysis
+│
+├── docs/
+│   ├── ARCHITECTURE.md        # Technical design
+│   ├── API/
+│   │   └── swagger.yaml       # OpenAPI spec
+│   └── CONTRIBUTING.md        # Dev guidelines
+│
+├── scripts/
+│   ├── deploy_edge.sh         # Edge deployment
+│   └── generate_certs.sh      # TLS cert generator
+│
+├── requirements.txt           # Python dependencies
+├── Pipfile                    # Pipenv config
+├── Dockerfile                 # Container build
+├── LICENSE                    # Apache 2.0
+└── README.md                  # Project overview
