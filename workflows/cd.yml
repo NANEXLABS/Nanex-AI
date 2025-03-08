@@ -1,0 +1,189 @@
+name: YOO AGENT CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types:
+      - completed
+  push:
+    tags:
+      - 'v*.*.*'
+
+env:
+  DOCKER_IMAGE: 'ghcr.io/your-org/yoo-agent'
+  HELM_CHART: './config/edge_deployment/helm_chart'
+  K8S_NAMESPACE: 'yoo-agent'
+  VAULT_ADDR: 'https://vault.your-org.com'
+  EDGE_REGISTRY: 'public.ecr.aws/your-registry'
+
+jobs:
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    environment: staging
+    concurrency: staging
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Verify image signatures
+        uses: sigstore/cosign-installer@v3
+        with:
+          cosign-release: 'v2.2.0'
+        env:
+          COSIGN_EXPERIMENTAL: 1
+      - run: |
+          cosign verify \
+            --certificate-identity-regexp '^https://github.com/your-org' \
+            ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
+
+      - name: Deploy to Kubernetes (Staging)
+        uses: helm/helm-deploy-action@v1.0.0
+        with:
+          kubeconfig: ${{ secrets.STAGING_KUBECONFIG }}
+          namespace: ${{ env.K8S_NAMESPACE }}
+          chart: ${{ env.HELM_CHART }}
+          values: config/agents/profiles/staging.yaml
+          atomic: true
+          timeout: 5m
+          set:
+            image.tag: ${{ github.sha }}
+            security.vaultEndpoint: ${{ env.VAULT_ADDR }}
+
+      - name: Run smoke tests
+        uses: example/curl-action@v1
+        with:
+          script: |
+            curl -X POST https://staging.yoo-agent.com/healthcheck | jq -e '.status == "OK"'
+            curl -X GET https://staging.yoo-agent.com/audit | jq -e '.gdpr_compliant == true'
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    environment: production
+    concurrency: production
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        region: ['us-west-2', 'eu-central-1']
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assume AWS Role
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ matrix.region }}
+
+      - name: Deploy with Helm (Blue/Green)
+        uses: helm/helm-deploy-action@v1.0.0
+        with:
+          kubeconfig: ${{ secrets.PRODUCTION_KUBECONFIG }}
+          namespace: ${{ env.K8S_NAMESPACE }}
+          chart: ${{ env.HELM_CHART }}
+          values: |
+            ${{ env.HELM_CHART }}/values-production.yaml
+            config/security/gdpr_policies.yaml
+          atomic: true
+          wait: true
+          set:
+            image.tag: ${{ github.sha }}
+            autoscaling.minReplicas: 3
+            strategy.type: blue-green
+            edge.enabled: false
+
+      - name: Deploy to Edge (AWS Greengrass)
+        if: matrix.region == 'us-west-2'
+        uses: aws-actions/aws-greengrass-deploy@v1
+        with:
+          group-id: ${{ secrets.GREENGRASS_GROUP_ID }}
+          deployment-config: |
+            {
+              "components": {
+                "yoo-agent": {
+                  "version": "${{ github.run_id }}",
+                  "runWith": {},
+                  "configuration": {
+                    "memoryLimitMB": 8
+                  }
+                }
+              }
+            }
+
+      - name: Verify GDPR compliance
+        run: |
+          kubectl get pods -n ${{ env.K8S_NAMESPACE }} -o json | \
+          opa eval -I -d config/security/gdpr_policies.yaml 'data.gdpr.valid'
+
+  deploy-edge:
+    name: Edge Device Deployment
+    runs-on: ubuntu-latest
+    needs: deploy-production
+    environment: edge
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup QEMU for ARM
+        uses: docker/setup-qemu-action@v3
+
+      - name: Build ARM-optimized image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          platforms: linux/arm64
+          tags: |
+            ${{ env.EDGE_REGISTRY }}/yoo-agent-edge:${{ github.sha }}
+          push: true
+          build-args: |
+            TARGETARCH=arm64
+
+      - name: Deploy to K3s Cluster
+        uses: k3d-io/k3d-action@v1
+        with:
+          cluster: edge-cluster
+          image: rancher/k3s:v1.27.4-k3s1-arm64
+          args: --api-port 6443 --agents 3
+          commands: |
+            k3d image import ${{ env.EDGE_REGISTRY }}/yoo-agent-edge:${{ github.sha }}
+            helm upgrade --install yoo-agent-edge ${{ env.HELM_CHART }} \
+              --set image.repository=${{ env.EDGE_REGISTRY }}/yoo-agent-edge \
+              --set image.tag=${{ github.sha }} \
+              --set resources.limits.memory=8Mi
+
+      - name: Validate edge metrics
+        run: |
+          curl -s http://edge-cluster:8080/metrics | \
+          grep 'yoo_agent_memory_usage_bytes'
+
+  rollback:
+    name: Rollback Mechanism
+    runs-on: ubuntu-latest
+    if: failure()
+    needs: [deploy-staging, deploy-production, deploy-edge]
+    steps:
+      - name: Rollback Kubernetes (Production)
+        if: contains(needs.*.result, 'failure') && contains(needs.*.result, 'deploy-production')
+        uses: helm/helm-rollback-action@v1
+        with:
+          kubeconfig: ${{ secrets.PRODUCTION_KUBECONFIG }}
+          release: yoo-agent
+          namespace: ${{ env.K8S_NAMESPACE }}
+          revision: 1
+
+      - name: Rollback Edge Devices
+        if: contains(needs.*.result, 'failure') && contains(needs.*.result, 'deploy-edge')
+        uses: aws-actions/aws-greengrass-rollback@v1
+        with:
+          group-id: ${{ secrets.GREENGRASS_GROUP_ID }}
+          deployment-id: previous
+
+      - name: Send Slack Alert
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "Deployment FAILED: ${{ github.workflow }}"
+          SLACK_COLOR: "danger"
+          SLACK_TITLE: "Rollback Initiated"
