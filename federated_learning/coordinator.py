@@ -1,5 +1,5 @@
 """
-YOO AGENT Coordinator: Distributed Orchestration Core with Raft Consensus and Zero-Trust Policy Enforcement
+NANEX AGENT Coordinator: Distributed Orchestration Core with Raft Consensus and Zero-Trust Policy Enforcement
 """
 
 import asyncio
