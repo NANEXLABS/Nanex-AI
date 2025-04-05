@@ -1,5 +1,5 @@
 """
-YOO AGENT Heartbeat Service: Distributed Health Monitoring with Zero-Trust Validation and Auto-Recovery
+NANEX AGENT Heartbeat Service: Distributed Health Monitoring with Zero-Trust Validation and Auto-Recovery
 """
 
 import asyncio
