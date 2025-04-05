@@ -1,5 +1,5 @@
 """
-YOO AGENT Federated Aggregation Core: Secure Multi-Party Computation with Adaptive Compression
+NANEX AGENT Federated Aggregation Core: Secure Multi-Party Computation with Adaptive Compression
 """
 
 import logging
