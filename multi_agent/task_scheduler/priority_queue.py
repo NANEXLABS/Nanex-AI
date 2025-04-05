@@ -1,5 +1,5 @@
 """
-YOO AGENT Priority Queue: Secure Deadline-Driven Task Scheduler with Byzantine Fault Tolerance
+NANEX AGENT Priority Queue: Secure Deadline-Driven Task Scheduler with Byzantine Fault Tolerance
 """
 
 import heapq
