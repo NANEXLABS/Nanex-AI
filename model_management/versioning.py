@@ -1,5 +1,5 @@
 """
-YOO AGENT Versioning Engine: Immutable Release Management with ECDSA Signatures
+NANEX AGENT Versioning Engine: Immutable Release Management with ECDSA Signatures
 """
 
 import json
