@@ -1,5 +1,5 @@
 """
-YOO AGENT Secure Logging Core: NIST-Compliant Audit System with Hardware-Backed Integrity Verification
+NANEX AGENT Secure Logging Core: NIST-Compliant Audit System with Hardware-Backed Integrity Verification
 """
 
 import logging
