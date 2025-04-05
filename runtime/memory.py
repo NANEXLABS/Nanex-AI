@@ -1,5 +1,5 @@
 """
-YOO AGENT Secure Memory Manager: Zero-Trust Memory Operations with ML-Guided Anomaly Detection
+NANEX AGENT Secure Memory Manager: Zero-Trust Memory Operations with ML-Guided Anomaly Detection
 """
 
 import os
