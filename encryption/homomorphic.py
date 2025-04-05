@@ -1,5 +1,5 @@
 """
-YOO AGENT Homomorphic Encryption Module: FHE Operations with Context Caching and Precomputed Optimizations
+NANEX AGENT Homomorphic Encryption Module: FHE Operations with Context Caching and Precomputed Optimizations
 """
 
 import os
