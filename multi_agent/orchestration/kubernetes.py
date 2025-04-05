@@ -1,5 +1,5 @@
 """
-YOO AGENT Kubernetes Orchestrator: Multi-Cluster Federation with Zero-Trust Admission Control
+NANEX AGENT Kubernetes Orchestrator: Multi-Cluster Federation with Zero-Trust Admission Control
 """
 
 import os
