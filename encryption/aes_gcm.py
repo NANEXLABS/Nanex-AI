@@ -1,5 +1,5 @@
 """
-YOO AGENT AES-GCM Module: Authenticated Encryption with Key Rotation and Hardware Optimization
+NANEX AGENT AES-GCM Module: Authenticated Encryption with Key Rotation and Hardware Optimization
 """
 
 import os
