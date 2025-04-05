@@ -1,5 +1,5 @@
 """
-YOO AGENT Mutual TLS Engine: Certificate Mutual Authentication with Dynamic Rotation
+NANEX AGENT Mutual TLS Engine: Certificate Mutual Authentication with Dynamic Rotation
 """
 
 import os
