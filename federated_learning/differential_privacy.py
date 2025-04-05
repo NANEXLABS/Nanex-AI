@@ -1,5 +1,5 @@
 """
-YOO AGENT Differential Privacy Core: Adaptive ε-δ Budget Management with Rényi Composition
+NANEX AGENT Differential Privacy Core: Adaptive ε-δ Budget Management with Rényi Composition
 """
 
 import logging
