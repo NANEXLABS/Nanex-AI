@@ -1,5 +1,5 @@
 """
-YOO AGENT Distributed Registry: CRDT-Backed Service Discovery with mTLS AuthN/Z
+NANEX AGENT Distributed Registry: CRDT-Backed Service Discovery with mTLS AuthN/Z
 """
 
 import asyncio
