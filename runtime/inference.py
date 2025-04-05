@@ -1,5 +1,5 @@
 """
-YOO AGENT Inference Engine: Secure Model Serving with Hardware-Accelerated Privacy
+NANEX AGENT Inference Engine: Secure Model Serving with Hardware-Accelerated Privacy
 """
 
 import os
