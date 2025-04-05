@@ -1,5 +1,5 @@
 """
-YOO AGENT gRPC-Web Adapter: Secure Browser-to-Backend Bridge with Bi-Directional Streaming
+NANEX AGENT gRPC-Web Adapter: Secure Browser-to-Backend Bridge with Bi-Directional Streaming
 """
 
 import os
