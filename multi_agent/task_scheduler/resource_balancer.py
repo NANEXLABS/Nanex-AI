@@ -1,5 +1,5 @@
 """
-YOO AGENT Resource Balancer: Dynamic Weighted Load Distribution with Byzantine Fault Tolerance
+NANEX AGENT Resource Balancer: Dynamic Weighted Load Distribution with Byzantine Fault Tolerance
 """
 
 import heapq
