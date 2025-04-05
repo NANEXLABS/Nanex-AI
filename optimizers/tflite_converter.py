@@ -1,5 +1,5 @@
 """
-YOO AGENT TensorFlow Lite Converter: Secure Model Optimization & Edge Deployment Pipeline
+NANEX AGENT TensorFlow Lite Converter: Secure Model Optimization & Edge Deployment Pipeline
 """
 
 import os
