@@ -1,5 +1,5 @@
 """
-YOO AGENT Metrics Engine: Secure Observability Pipeline with Prometheus/OpenTelemetry Integration
+NANEX AGENT Metrics Engine: Secure Observability Pipeline with Prometheus/OpenTelemetry Integration
 """
 
 import time
