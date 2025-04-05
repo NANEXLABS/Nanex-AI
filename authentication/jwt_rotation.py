@@ -1,5 +1,5 @@
 """
-YOO AGENT JWT Rotation Engine: Asymmetric Key Management with Graceful Rollover
+NANEX AGENT JWT Rotation Engine: Asymmetric Key Management with Graceful Rollover
 """
 
 import os
