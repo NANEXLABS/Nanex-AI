@@ -1,5 +1,5 @@
 """
-YOO AGENT MQTT Core: Zero-Trust IoT Protocol Engine with Hardware Security Module (HSM) Integration
+NANEX AGENT MQTT Core: Zero-Trust IoT Protocol Engine with Hardware Security Module (HSM) Integration
 """
 
 import asyncio
