@@ -1,4 +1,4 @@
-yoo-agent/
+yoo-nanex-agent/
 ├── .github/
 │   └── workflows/
 │       ├── ci.yml              # Unit tests + security scans
