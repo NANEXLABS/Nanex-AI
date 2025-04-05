@@ -1,4 +1,4 @@
-# 🛡️ YOO AGENT: Zero-Trust Enterprise Multi-Agent Framework
+# 🛡️ NANEX AGENT: Zero-Trust Enterprise Multi-Agent Framework
 
 **Secure • Federated • Edge-Optimized**
 
@@ -6,40 +6,28 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-brightgreen)](https://www.python.org/)
 [![FIPS 140-2](https://img.shields.io/badge/Crypto-FIPS_140--2-compliant)](https://csrc.nist.gov/publications/detail/fips/140/2/final)
 
-[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/YooAIAGENT)
-[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/JacobKleinx)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=LinkedIn&logoColor=white)](https://www.linkedin.com/in/jacob-klein-4286a226/)
-[![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/YooAIAGENT)
-## Yoo!! AGENT WEBSITE: https://yooagent.com/
+[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/NANEXLABS)
+
+## NANEX AGENT WEBSITE: https://nanexlabs.com/
 
 ```
- ___    ___ ________  ________  ___  ___            ________  ________  _______   ________   _________   
- |\  \  /  /|\   __  \|\   __  \|\  \|\  \          |\   __  \|\   ____\|\  ___ \ |\   ___  \|\___   ___\ 
- \ \  \/  / | \  \|\  \ \  \|\  \ \  \ \  \         \ \  \|\  \ \  \___|\ \   __/|\ \  \\ \  \|___ \  \_| 
-  \ \    / / \ \  \\\  \ \  \\\  \ \  \ \  \         \ \   __  \ \  \  __\ \  \_|/_\ \  \\ \  \   \ \  \  
-   \/  /  /   \ \  \\\  \ \  \\\  \ \__\ \__\         \ \  \ \  \ \  \|\  \ \  \_|\ \ \  \\ \  \   \ \  \ 
- __/  / /      \ \_______\ \_______\|__|\|__|          \ \__\ \__\ \_______\ \_______\ \__\\ \__\   \ \__\
-|\___/ /        \|_______|\|_______|   ___  ___         \|__|\|__|\|_______|\|_______|\|__| \|__|    \|__|
-\|___|/                               |\__\|\__\                                                          
-                                      \|__|\|__|
+
+      ___           ___           ___           ___           ___                    ___                 
+     /__/\         /  /\         /__/\         /  /\         /__/|                  /  /\        ___     
+     \  \:\       /  /::\        \  \:\       /  /:/_       |  |:|                 /  /::\      /  /\    
+      \  \:\     /  /:/\:\        \  \:\     /  /:/ /\      |  |:|                /  /:/\:\    /  /:/    
+  _____\__\:\   /  /:/~/::\   _____\__\:\   /  /:/ /:/_   __|__|:|               /  /:/~/::\  /__/::\    
+ /__/::::::::\ /__/:/ /:/\:\ /__/::::::::\ /__/:/ /:/ /\ /__/::::\____          /__/:/ /:/\:\ \__\/\:\__ 
+ \  \:\~~\~~\/ \  \:\/:/__\/ \  \:\~~\~~\/ \  \:\/:/ /:/    ~\~~\::::/          \  \:\/:/__\/    \  \:\/\
+  \  \:\  ~~~   \  \::/       \  \:\  ~~~   \  \::/ /:/      |~~|:|~~            \  \::/          \__\::/
+   \  \:\        \  \:\        \  \:\        \  \:\/:/       |  |:|               \  \:\          /__/:/ 
+    \  \:\        \  \:\        \  \:\        \  \::/        |  |:|                \  \:\         \__\/  
+     \__\/         \__\/         \__\/         \__\/         |__|/                  \__\/                
+
 ```                                                                                                         
 
 ## How It Works
-### Zero-Trust Security Protocol
-```mermaid
-sequenceDiagram
-    participant AgentA
-    participant PolicyEngine
-    participant CertificateAuthority
 
-    AgentA->>+PolicyEngine: Request Task Execution (JWT)
-    PolicyEngine->>+CertificateAuthority: Validate mTLS Cert (OCSP)
-    CertificateAuthority-->>-PolicyEngine: Cert Status + CRL
-    PolicyEngine->>AgentA: Attestation Result (Allow/Deny)
-    AgentA->>EdgeNode: Execute Task (Encrypted Payload)
-    EdgeNode-->>AgentA: Result + Audit Log (PKCS#7 Signed)
-
-```
 ### Federated Learning Workflow
 ```mermaid
 flowchart LR
@@ -78,7 +66,7 @@ stateDiagram-v2
 
 
 ## 🚀 Overview
-YOO AGENT is an enterprise-grade framework for building **secure multi-agent systems** that enable:
+NANEX AGENT is an enterprise-grade framework for building **secure multi-agent systems** that enable:
 - 🔒 **Zero-trust architecture** with mTLS/OPA/JWT/RBAC
 - 🤝 **Federated collaboration** via encrypted model aggregation
 - ⚡ **8MB-edge deployment** with ONNX/TFLite quantization
@@ -97,7 +85,7 @@ YOO AGENT is an enterprise-grade framework for building **secure multi-agent sys
 ### Enterprise Ready
 ```bash
 # Single-command edge deployment
-$ yoo-agent deploy --memory 8MB --platform jetson-nano
+$ nanex-agent deploy --memory 8MB --platform jetson-nano
 ```
 
 ## 🧩 Architecture
@@ -115,7 +103,7 @@ graph TD
 ## ⚙️ Installation
 ```
 # 1. Install core
-pip install yoo-agent==1.0.0 --extra-index-url https://pypi.trusted.yoo
+pip install nanex-agent==1.0.0 --extra-index-url https://pypi.trusted.yoo
 
 # 2. Verify FIPS mode
 openssl version  # Requires OpenSSL 3.0+
@@ -124,7 +112,7 @@ openssl version  # Requires OpenSSL 3.0+
 ## 🔧 Data Flow Example
 ```
 # Secure federated learning round
-from yoo_agent import FederatedLoop
+from nanex_agent import FederatedLoop
 
 loop = FederatedLoop(
     model=resnet18(),
@@ -146,11 +134,11 @@ loop.run(
 ```
 
 
-## 💡 Why YOO AGENT?
+## 💡 Why nanex AGENT?
 
 - 10x Faster encrypted inference vs. baseline (see benchmarks)
 - Zero Compliance Gaps with pre-certified modules
 - True Hybrid Deploy from Raspberry Pi to AWS Snow Family
 
 ## 📜 License
-Apache 2.0 © 2025 YOO AGENT Team
+Apache 2.0 © 2025 nanex AGENT Team
