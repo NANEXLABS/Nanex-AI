@@ -1,5 +1,5 @@
 """
-YOO AGENT ONNX Quantization Engine: Production-Grade Model Optimization with QAT Support
+NANEX AGENT ONNX Quantization Engine: Production-Grade Model Optimization with QAT Support
 """
 
 import os
