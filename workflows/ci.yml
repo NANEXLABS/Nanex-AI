@@ -1,4 +1,4 @@
-name: YOO AGENT CI Pipeline
+name: NANEX AGENT CI Pipeline
 
 on:
   push:
