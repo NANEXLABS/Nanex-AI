@@ -1,5 +1,5 @@
 """
-YOO AGENT Next-Gen Firewall: Zero-Trust Network Enforcement with ML-Driven Threat Prevention
+NANEX AGENT Next-Gen Firewall: Zero-Trust Network Enforcement with ML-Driven Threat Prevention
 """
 
 import asyncio
