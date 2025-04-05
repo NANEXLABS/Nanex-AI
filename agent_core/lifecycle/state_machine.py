@@ -1,5 +1,5 @@
 """
-YOO AGENT State Machine: Distributed Finite State Machine with Conflict-free Replicated Data Types (CRDT)
+NANEX AGENT State Machine: Distributed Finite State Machine with Conflict-free Replicated Data Types (CRDT)
 """
 
 from __future__ import annotations
