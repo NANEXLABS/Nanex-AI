@@ -1,5 +1,5 @@
 """
-YOO AGENT Core Module: Base Agent Class with Zero-Trust Security, Federated Learning, and Edge-Optimized Execution
+Nanex AGENT Core Module: Base Agent Class with Zero-Trust Security, Federated Learning, and Edge-Optimized Execution
 """
 
 from __future__ import annotations
