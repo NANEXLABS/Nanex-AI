@@ -1,4 +1,4 @@
-name: YOO AGENT CD Pipeline
+name: NANEX AGENT CD Pipeline
 
 on:
   workflow_run:
