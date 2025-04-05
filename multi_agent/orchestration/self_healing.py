@@ -1,5 +1,5 @@
 """
-YOO AGENT Self-Healing Core: Autonomous Repair System with ML-Driven Diagnostics
+NANEX AGENT Self-Healing Core: Autonomous Repair System with ML-Driven Diagnostics
 """
 
 import asyncio
