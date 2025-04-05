@@ -1,5 +1,5 @@
 """
-YOO AGENT Policy Engine: Attribute-Based Access Control (ABAC) with Real-Time Policy Enforcement
+NANEX AGENT Policy Engine: Attribute-Based Access Control (ABAC) with Real-Time Policy Enforcement
 """
 
 import json
